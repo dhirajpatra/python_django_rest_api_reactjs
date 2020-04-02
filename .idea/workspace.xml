@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="af39f3fb-8153-45ca-9fb9-e1d7f48ea43c" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="1ZpdlCM5t986NTGkR70S1J8MUmZ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="af39f3fb-8153-45ca-9fb9-e1d7f48ea43c" name="Default Changelist" comment="" />
+      <created>1585540117706</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585540117706</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="304" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1585841037772">
+      <screen x="35" y="27" width="1331" height="741" />
+    </state>
+    <state x="304" y="224" key="com.intellij.ide.util.TipDialog/35.27.1331.741@35.27.1331.741" timestamp="1585841037772" />
+    <state x="340" y="89" width="719" height="678" key="search.everywhere.popup" timestamp="1585572711810">
+      <screen x="35" y="27" width="1331" height="741" />
+    </state>
+    <state x="340" y="89" width="719" height="678" key="search.everywhere.popup/35.27.1331.741@35.27.1331.741" timestamp="1585572711810" />
+  </component>
+</project>
