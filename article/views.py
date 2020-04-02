@@ -64,3 +64,5 @@ class AuthorView(ListModelMixin, CreateModelMixin, GenericAPIView):
 class SingleArticleView(RetrieveUpdateAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
+
+
