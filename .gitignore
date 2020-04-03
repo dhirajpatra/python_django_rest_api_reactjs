@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+db.sqlite3
+.idea
+.idea/.gitignore
+.idea/djangoapi.iml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
