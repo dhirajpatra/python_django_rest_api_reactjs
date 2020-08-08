@@ -6,5 +6,9 @@ def index(request):
     return render(request, 'frontend/index.html')
 
 
-def create(request):
-    return render(request, 'frontend/create.html')
+def details(request, id):
+    return render(request, 'frontend/details.html')
+
+
+# def create(request):
+#     return render(request, 'frontend/index.html')

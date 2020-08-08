@@ -6,7 +6,7 @@ class Details extends Component {
     constructor(props) {
         super();
         this.state = {
-            id: props.id,
+            id: 1,
             data: [],
             loaded: false,
             placeholder: "Loading"
@@ -14,7 +14,7 @@ class Details extends Component {
     }
 
     componentDidMount() {
-        fetch("api/articles/")
+        fetch("api/articles/" + this.state.id)
             .then(response => {
                 if (response.status > 400) {
                     return this.setState(() => {
@@ -37,18 +37,13 @@ class Details extends Component {
     render() {
         return (
             <div>
-                <h1>All Articles</h1>
+                <h1>Article Details</h1>
                 <ul>
-                    {
-                        this.state.data.map(article => {
-                            let link = '/api/articles/' + article.id
-                            return (
-                                <li key={article.id}>
-                                    <a href={link}>{article.title}</a> - { article.description} - { article.body}
-                                </li>
-                            );
-                        })
-                    }
+
+                    <li key={this.state.data.id}>
+                        {this.state.data.title} - {this.state.data.description} - {this.state.data.body} - {this.state.data.author_id}
+                    </li>
+
                 </ul >
             </div>
         );
@@ -58,5 +53,5 @@ class Details extends Component {
 
 export default Details;
 
-const container = document.getElementById("details");
-render(<Details />, container);
+// const container = document.getElementById("details");
+// render(<Details />, container);

@@ -40,7 +40,7 @@ class App extends Component {
                 <ul>
                     {
                         this.state.data.map(article => {
-                            let link = '/api/articles/' + article.id
+                            let link = '/' + article.id
                             return (
                                 <li key={article.id}>
                                     <a href={link}>{article.title}</a> - { article.description} - { article.body}
