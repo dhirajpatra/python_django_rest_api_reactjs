@@ -66,7 +66,11 @@ class AuthorView(ListModelMixin, CreateModelMixin, GenericAPIView):
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
+    # create author
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
 
 class SingleArticleView(RetrieveUpdateAPIView):
-    queryset = Article.objects.all()
+    queryset = Article.objects.all().select_related('author')
     serializer_class = ArticleSerializer

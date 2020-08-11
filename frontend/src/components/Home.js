@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import { Link } from 'react-router-dom';
 
 
 class Home extends Component {
@@ -30,6 +31,9 @@ class Home extends Component {
                         loaded: true
                     };
                 });
+            })
+            .catch(err => {
+                console.error("Error:", err)
             });
     }
 
@@ -43,7 +47,7 @@ class Home extends Component {
                             let link = '/' + article.id
                             return (
                                 <li key={article.id}>
-                                    <a href={link}>{article.title}</a> - { article.description} - { article.body}
+                                    <Link to={link}>{article.title}</Link> - { article.description} - { article.body}
                                 </li>
                             );
                         })

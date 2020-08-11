@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { render } from 'react-dom';
+import { useParams } from 'react-router';
 
 
 class Details extends Component {
     constructor(props) {
         super();
         this.state = {
-            id: 1,
             data: [],
             loaded: false,
             placeholder: "Loading"
         };
     }
 
+    getId() {
+        let articleId = this.props.match.params.articleId;
+        return articleId;
+    }
+
     componentDidMount() {
-        fetch("api/articles/" + this.state.id)
+        fetch(`api/articles/${this.getId()}`)
             .then(response => {
                 if (response.status > 400) {
                     return this.setState(() => {
@@ -31,6 +37,9 @@ class Details extends Component {
                         loaded: true
                     };
                 });
+            })
+            .catch(err => {
+                console.error("Error:", err)
             });
     }
 
@@ -38,20 +47,27 @@ class Details extends Component {
         return (
             <div>
                 <h1>Article Details</h1>
-                <ul>
-
-                    <li key={this.state.data.id}>
-                        {this.state.data.title} - {this.state.data.description} - {this.state.data.body} - {this.state.data.author_id}
-                    </li>
-
-                </ul >
-            </div>
+                <div>
+                    <span>Title:</span><span>{this.state.data.title}</span>
+                </div>
+                <div>
+                    <span>Description:</span><span>{this.state.data.description}</span>
+                </div>
+                <div>
+                    <span>Body:</span><span>{this.state.data.body}</span>
+                </div>
+                <div>
+                    <span>Author</span>
+                    <div>
+                        <span>ID:</span><span>{this.state.data.author_id}</span>
+                    </div>
+                    <div>
+                        <span>Name:</span><span>{this.state.data.author_name}</span>
+                    </div>
+                </div>
+            </div >
         );
     }
 }
 
-
-export default Details;
-
-// const container = document.getElementById("details");
-// render(<Details />, container);
+export default withRouter(Details);
