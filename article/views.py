@@ -2,6 +2,8 @@ from django.shortcuts import render
 from rest_framework.generics import get_object_or_404, GenericAPIView, RetrieveAPIView, RetrieveUpdateAPIView
 from rest_framework.mixins import ListModelMixin, CreateModelMixin
 from rest_framework.response import Response
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 from .models import Article, Author
 from .serializers import ArticleSerializer, AuthorSerializer
@@ -23,6 +25,7 @@ class ArticleView(ListModelMixin, CreateModelMixin, GenericAPIView):
         return self.list(request, *args, **kwargs)
 
     # create article
+    @method_decorator(ensure_csrf_cookie)
     def post(self, request, *args, **kwargs):
         # article = request.data.get('article')
         #

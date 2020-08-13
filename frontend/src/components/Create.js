@@ -1,20 +1,26 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import CSRFToken from './CSRFToken';
+import { Redirect } from "react-router-dom";
+
+var csrftoken = getCookie('csrftoken');
 
 class Create extends React.Component {
     constructor(props) {
         super();
+
         this.state = {
             data: [],
             values: {
-                title: '',
-                description: '',
-                body: '',
-                author: ''
+                title: null,
+                description: null,
+                body: null,
+                author_id: null
             },
             isSubmitting: false,
             isError: false,
-            message: ''
+            message: '',
+            redirect: false
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -34,7 +40,9 @@ class Create extends React.Component {
             method: "POST",
             body: JSON.stringify(this.state.values),
             headers: {
-                "Content-Type": "application/json"
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken
             }
         })
             .then(res => {
@@ -46,6 +54,7 @@ class Create extends React.Component {
                 !data.hasOwnProperty("error")
                     ? this.setState({ message: data.success })
                     : this.setState({ message: data.error, isError: true });
+                this.setState({ redirect: true });
             });
     }
 
@@ -69,13 +78,20 @@ class Create extends React.Component {
                 });
             })
             .catch(err => {
-                console.error("Error:", err)
+                console.log("Error:", err)
             });
     }
 
     render() {
+        const { redirect } = this.state;
+
+        if (redirect) {
+            return <Redirect to="/" />
+        }
+
         return (
             <form className="simple-form" onSubmit={this.handleSubmit} >
+                <CSRFToken />
                 <div className="form-group">
                     <label>
                         Title:
@@ -91,13 +107,13 @@ class Create extends React.Component {
                 <div className="form-group">
                     <label>
                         Body:
-                    <textarea name="body" onChange={this.handleInputChange} required>                        </textarea>
+                    <textarea name="body" onChange={this.handleInputChange} required></textarea>
                     </label>
                 </div>
                 <div className="form-group">
                     <label>
                         Author:
-                        <select name="author" onChange={this.handleInputChange}>
+                        <select name="author_id" onChange={this.handleInputChange}>
                             {
                                 this.state.data.map(author => {
                                     return (
@@ -116,6 +132,22 @@ class Create extends React.Component {
             </form >
         );
     }
+}
+
+// for csrf_token
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
 }
 
 export default withRouter(Create);
