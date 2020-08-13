@@ -1,4 +1,4 @@
-# python djangoapi rest api framework with react js
+# python django rest api framework with react js
 python django rest framework api back end with React.js front end application. You will know that how to use django rest_framework lib and how to use different type of serializers and call all APIs from React.js application.
 
 ## how to install
