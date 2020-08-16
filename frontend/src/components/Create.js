@@ -59,7 +59,13 @@ class Create extends React.Component {
     }
 
     componentDidMount() {
-        fetch("api/authors")
+        fetch("api/authors", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken
+            }
+        })
             .then(response => {
                 if (response.status > 400) {
                     return this.setState(() => {

@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { render } from 'react-dom';
 import { useParams } from 'react-router';
 
+var csrftoken = getCookie('csrftoken');
 
 class Details extends Component {
     constructor(props) {
@@ -20,7 +21,13 @@ class Details extends Component {
     }
 
     componentDidMount() {
-        fetch(`api/articles/${this.getId()}`)
+        fetch(`api/articles/${this.getId()}`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken
+            }
+        })
             .then(response => {
                 if (response.status > 400) {
                     return this.setState(() => {
@@ -69,5 +76,22 @@ class Details extends Component {
         );
     }
 }
+
+// for csrf_token
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
 
 export default withRouter(Details);

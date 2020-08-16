@@ -21,6 +21,7 @@ class ArticleView(ListModelMixin, CreateModelMixin, GenericAPIView):
         return serializer.save(author=author)
 
     # get all articles
+    @method_decorator(ensure_csrf_cookie)
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
@@ -66,10 +67,12 @@ class AuthorView(ListModelMixin, CreateModelMixin, GenericAPIView):
     serializer_class = AuthorSerializer
 
     # get all authors
+    @method_decorator(ensure_csrf_cookie)
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
     # create author
+    @method_decorator(ensure_csrf_cookie)
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
